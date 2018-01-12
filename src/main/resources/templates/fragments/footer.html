@@ -1,0 +1,10 @@
+<script th:src="@{/jquery/jquery.min.js}"></script>
+<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/pager/pager.js}"></script>
+<script>
+    $(document).ready(function() {
+        $("table")
+            .tablesorter({widthFixed: true, widgets: ['zebra']})
+            .tablesorterPager({container: $("#pager")});
+    });
+</script>
