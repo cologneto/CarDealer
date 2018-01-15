@@ -1,6 +1,7 @@
 package com.miniapp.cardealer.controllers;
 
 import com.miniapp.cardealer.models.viewModels.CarView;
+import com.miniapp.cardealer.models.viewModels.CarWithPartsView;
 import com.miniapp.cardealer.services.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,4 +31,13 @@ public class CarController {
         model.addAttribute("view","/cars/all-cars");
         return "base-layout";
     }
+
+    @GetMapping("{id}/parts")
+    public String getCarsWithParts(Model model, @PathVariable long id){
+        CarWithPartsView carWithPartsView = this.carService.getById(id);
+        model.addAttribute("car", carWithPartsView);
+        model.addAttribute("view","/cars/cars-parts-table");
+        return "base-layout";
+    }
+
 }

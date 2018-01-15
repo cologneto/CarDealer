@@ -2,6 +2,7 @@ package com.miniapp.cardealer.services;
 
 import com.miniapp.cardealer.entities.Car;
 import com.miniapp.cardealer.models.viewModels.CarView;
+import com.miniapp.cardealer.models.viewModels.CarWithPartsView;
 import com.miniapp.cardealer.repositories.CarRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,15 @@ public class CarServiceImpl implements CarService {
             carViews.add(carView);
         }
         return carViews;
+    }
+
+    @Override
+    public CarWithPartsView getById(Long id) {
+        Car car = carRepository.findOne(id);
+        ModelMapper modelMapper = new ModelMapper();
+        CarWithPartsView carWithPartsView = modelMapper.map(car, CarWithPartsView.class);
+
+        return carWithPartsView;
     }
 
 

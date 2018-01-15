@@ -1,22 +1,16 @@
-package com.miniapp.cardealer.entities;
-import javax.persistence.*;
+package com.miniapp.cardealer.models.viewModels;
+
 import java.util.Set;
 
-@Entity
-@Table(name="cars")
-public class Car {
+
+
+public class CarWithPartsView {
     private Long id;
     private String make;
     private String model;
     private Double travelledDistance;
-    private Set<Part> parts;
+    private Set<PartView> parts;
 
-
-    public Car() {
-    }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }
@@ -49,16 +43,11 @@ public class Car {
         this.travelledDistance = travelledDistance;
     }
 
-    @ManyToMany()
-    @JoinTable(name = "parts_cars",
-            joinColumns = @JoinColumn(name = "car_id"),
-            inverseJoinColumns = @JoinColumn(name = "part_id",referencedColumnName = "id"))
-    public Set<Part> getParts() {
+    public Set<PartView> getParts() {
         return parts;
     }
 
-    public void setParts(Set<Part> parts) {
+    public void setParts(Set<PartView> parts) {
         this.parts = parts;
     }
-
 }
